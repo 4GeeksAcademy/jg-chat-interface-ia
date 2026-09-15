@@ -103,16 +103,20 @@ export default function Home() {
         </form>
       </div>
       {/* Panel lateral */}
-      <aside className="w-full md:w-64 shrink-0 bg-lila-900 text-lila-100 p-4 flex flex-row md:flex-col gap-4 md:gap-6 overflow-x-auto">
-        <div className="min-w-[140px]">
-          <h3 className="text-xs uppercase tracking-wider text-lila-400 mb-1">Modelo</h3>
-          <p className="text-sm font-semibold break-all">{meta?.model || "—"}</p>
+      <aside className="w-full md:w-64 shrink-0 bg-lila-900 text-lila-100 p-4 flex flex-row md:flex-col gap-4 md:gap-6">
+        {/* Modelo + Tiempo apilados */}
+        <div className="flex flex-col gap-4 md:min-w-[140px]">
+          <div>
+            <h3 className="text-xs uppercase tracking-wider text-lila-400 mb-1">Modelo</h3>
+            <p className="text-sm font-semibold break-all">{meta?.model || "—"}</p>
+          </div>
+          <div>
+            <h3 className="text-xs uppercase tracking-wider text-lila-400 mb-1">Tiempo</h3>
+            <p className="text-sm font-semibold">{meta ? `${(meta.responseTime / 1000).toFixed(2)}s` : "—"}</p>
+          </div>
         </div>
-        <div className="min-w-[140px]">
-          <h3 className="text-xs uppercase tracking-wider text-lila-400 mb-1">Tiempo</h3>
-          <p className="text-sm font-semibold">{meta ? `${(meta.responseTime / 1000).toFixed(2)}s` : "—"}</p>
-        </div>
-        <div className="min-w-[140px]">
+        {/* Tokens a la derecha en móvil, debajo en md+ */}
+        <div className="md:min-w-[140px]">
           <h3 className="text-xs uppercase tracking-wider text-lila-400 mb-1">Tokens</h3>
           <p className="text-sm">Entrada: <span className="font-semibold">{meta?.usage.prompt_tokens ?? "—"}</span></p>
           <p className="text-sm">Salida: <span className="font-semibold">{meta?.usage.completion_tokens ?? "—"}</span></p>
